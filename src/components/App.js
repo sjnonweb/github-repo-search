@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GitHub_Logo from '../assets/GitHub_Logo.png';
+import GitHub_Logo from '../../assets/GitHub_Logo.png';
 import './App.css';
 
 class App extends Component {
