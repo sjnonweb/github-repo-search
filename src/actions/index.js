@@ -4,6 +4,7 @@ export const searchStart = (searchTerm) => ({
 	type: 'SEARCH_START',
 	payload: {
 		searchActive: true,
+		isFetching: true,
 		searchTerm,
 	}
 })

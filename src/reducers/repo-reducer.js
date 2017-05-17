@@ -1,5 +1,5 @@
 const initialState = {
-	total_count: 0,
+	total_count: null,
 	items: [],
 	link: ''
 }
