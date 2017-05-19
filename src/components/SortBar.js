@@ -32,6 +32,8 @@ class SortBar extends Component {
 							<option value="fewest_stars">Fewest stars</option>
 							<option value="most_forks">Most forks</option>
 							<option value="fewest_forks">Fewest forks</option>
+							<option value="most_recent">Most recently updated</option>
+							<option value="least_recent">Least recently updated</option>
 						</select>
 					</div>
 				</div>
