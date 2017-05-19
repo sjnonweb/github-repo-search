@@ -28,3 +28,10 @@ export function fetchSearchResult(searchTerm) {
 			})
 	}
 }
+
+export const sortSearchResult = (by) => ({
+	type: 'SEARCH_SORT',
+	payload: {
+		by
+	}
+})

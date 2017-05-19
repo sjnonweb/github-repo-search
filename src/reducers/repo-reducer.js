@@ -13,6 +13,10 @@ export default function repoReducer(state=initialState, action) {
 				link: action.payload.link
 			}
 		}
+		case 'SEARCH_SORT': {
+			console.log(action);
+			return state;
+		}
 		default: return state;
 	}
 }
