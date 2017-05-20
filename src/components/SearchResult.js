@@ -4,7 +4,7 @@ import SortBar from './SortBar';
 
 export default class SearchResult extends Component {
 	render() {
-		if(this.props.searchActive) {
+		if(this.props.searchActive && !this.props.isFetching) {
 			if(this.props.total_count>0) {
 				return (
 					<div>
@@ -22,7 +22,11 @@ export default class SearchResult extends Component {
 				)
 			}
 			else if(this.props.total_count === 0)
-				return (<h2>no results found!</h2>)
+				return (
+					<div className="text-center">	
+						<h2>No results found!</h2>
+					</div>
+				)
 			else
 				return null;
 		}
