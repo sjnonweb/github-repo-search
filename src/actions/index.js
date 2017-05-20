@@ -18,14 +18,39 @@ export const searchComplete = (json, link) => ({
 	}
 })
 
+
 export function fetchSearchResult(searchTerm) {
 	return function(dispatch) {
 		dispatch(searchStart(searchTerm));
 		axios.get(`https://api.github.com/search/repositories?q=${searchTerm}`)
 			.then((response) => {
-				console.log(response);
 				dispatch(searchComplete(response.data, response.headers.link))
 			})
+	}
+}
+
+export const fetchRepoStart = () => (
+	{
+		type: 'FETCH_REPO_START',
+		payload: {
+			isFetchingRepo: true
+		}
+	}
+)
+
+export const fetchRepoComplete = (json) => ({
+	type: 'FETCH_REPO_COMPLETE',
+	payload: {
+		item: json
+	}
+})
+
+export function fetchRepo(url) {
+	return function(dispatch) {
+		axios.get(url)
+			.then((response) => {
+				dispatch(fetchRepoComplete(response.data));
+			});
 	}
 }
 

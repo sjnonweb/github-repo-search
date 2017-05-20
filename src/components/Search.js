@@ -7,38 +7,44 @@ import SearchBar from './SearchBar';
 
 
 class Search extends Component {
-	render() {
-		const marginTop = {
-			marginTop: "20px",
+	constructor() {
+		super();
+		this.decider = this.decider.bind(this)
+	}
+	
+	decider() {
+		if(this.props.isFetching && this.props.searchActive) {
+			return (<Loader />)
 		}
+		else if(!this.props.isFetching && this.props.searchActive ) {
+			return (
+				<SearchResult
+					searchTerm={this.props.searchTerm}
+					items={this.props.items}
+					total_count={this.props.total_count}
+				/>
+			)
+		}
+	}
+
+	render() {
 		return (
-			<div className="container" style={marginTop}>
+			<div>
 				<SearchBar />
-				<div className="row text-center">
-					<Loader isFetching={this.props.isFetching} />
-				</div>
-				<div className="row">
-					<SearchResult
-						searchActive={this.props.searchActive}
-						searchTerm={this.props.searchTerm}
-						items={this.props.items}
-						total_count={this.props.total_count}
-						isFetching={this.props.isFetching}
-					/>
-				</div>
+				{this.decider()}
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = state => {
-	const { uiState, repoState } = state;
+const mapStateToProps = (state) => {
+	const { uiState, repoResultState } = state;
 	return {
 		searchActive: uiState.searchActive,
 		isFetching: uiState.isFetching,
 		searchTerm: uiState.searchTerm,
-		items: repoState.items,
-		total_count: repoState.total_count
+		items: repoResultState.items,
+		total_count: repoResultState.total_count
 	}
 }
 

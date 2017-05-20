@@ -3,3 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.marginTop {
+  margin-top: 20px;
+}

@@ -1,7 +1,8 @@
 const intialState = {
 	searchActive: false,
 	isFetching: false,
-	searchTerm: ''
+	isFetchingRepo: false,
+	searchTerm: 'boot'
 }
 
 export default function uiReducer(state=intialState, action) {
@@ -18,6 +19,18 @@ export default function uiReducer(state=intialState, action) {
 			return {
 				...state,
 				isFetching: false
+			}
+		}
+		case 'FETCH_REPO_START': {
+			return {
+				...state,
+				isFetchingRepo: action.payload.isFetchingRepo
+			}
+		}
+		case 'FETCH_REPO_COMPLETE': {
+			return {
+				...state,
+				isFetchingRepo: false,
 			}
 		}
 		default: return state;
