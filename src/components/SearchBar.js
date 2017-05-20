@@ -26,7 +26,7 @@ class SearchBar extends Component {
 					<form onSubmit={this.handleSubmit}>
 						<div className="col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 col-xs-8">
 							<div className="form-group">
-								<input ref={node => {this.searchTerm = node}} type="text" pattern="[a-zA-Z\-_]*" title="Only single or connected terms allowed. Used hyphen or underscore to separete terms" required className="form-control" id="term" />
+								<input ref={node => {this.searchTerm = node}} type="text" pattern="[a-zA-Z0-9\-_]*" title="Only single or connected terms allowed. Used hyphen or underscore to separete terms" required className="form-control" id="term" />
 							</div>
 						</div>
 						<div className="col-md-2 col-sm-2 col-xs-4">

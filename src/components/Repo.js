@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Loader from './Loader'
 import RepoDetails from './RepoDetails'
+import Error from './Error';
 
 import { fetchRepoStart, fetchRepo } from '../actions'
 
@@ -18,8 +19,11 @@ class Repo extends Component {
 	}
 
 	render() {
-		if(this.props.isFetchingRepo) {
+		if(this.props.isFetchingRepo && !this.props.networkError) {
 			return (<Loader />)
+		}
+		if(this.props.networkError) {
+			return (<Error />)
 		}
 		return (
 			<RepoDetails item={this.props.item} />
@@ -31,6 +35,7 @@ const mapStateToProps = (state) => {
 	const { uiState, repoResultState, repoDetails } = state;
 	return {
 		isFetchingRepo: uiState.isFetchingRepo,
+		networkError: uiState.networkError,
 		items: repoResultState.items,
 		item: repoDetails.item
 	}

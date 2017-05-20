@@ -18,6 +18,9 @@ export const searchComplete = (json, link) => ({
 	}
 })
 
+export const networkError = () => ({
+	type: 'NETWORK_ERROR'
+})
 
 export function fetchSearchResult(searchTerm) {
 	return function(dispatch) {
@@ -25,6 +28,9 @@ export function fetchSearchResult(searchTerm) {
 		axios.get(`https://api.github.com/search/repositories?q=${searchTerm}`)
 			.then((response) => {
 				dispatch(searchComplete(response.data, response.headers.link))
+			})
+			.catch((err) => {
+				dispatch(networkError());
 			})
 	}
 }
@@ -50,7 +56,10 @@ export function fetchRepo(url) {
 		axios.get(url)
 			.then((response) => {
 				dispatch(fetchRepoComplete(response.data));
-			});
+			})
+			.catch((err) => {
+				dispatch(networkError());
+			})
 	}
 }
 

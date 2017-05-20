@@ -2,7 +2,8 @@ const intialState = {
 	searchActive: false,
 	isFetching: false,
 	isFetchingRepo: false,
-	searchTerm: 'boot'
+	searchTerm: '',
+	networkError: false
 }
 
 export default function uiReducer(state=intialState, action) {
@@ -12,25 +13,35 @@ export default function uiReducer(state=intialState, action) {
 				...state,
 				searchActive: action.payload.searchActive,
 				isFetching: action.payload.isFetching,
-				searchTerm: action.payload.searchTerm
+				searchTerm: action.payload.searchTerm,
+				networkError: false
 			}
 		}
 		case 'SEARCH_COMPLETE': {
 			return {
 				...state,
-				isFetching: false
+				isFetching: false,
+				networkError: false
 			}
 		}
 		case 'FETCH_REPO_START': {
 			return {
 				...state,
-				isFetchingRepo: action.payload.isFetchingRepo
+				isFetchingRepo: action.payload.isFetchingRepo,
+				networkError: false
 			}
 		}
 		case 'FETCH_REPO_COMPLETE': {
 			return {
 				...state,
 				isFetchingRepo: false,
+				networkError: false
+			}
+		}
+		case 'NETWORK_ERROR': {
+			return {
+				...state,
+				networkError: true
 			}
 		}
 		default: return state;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SearchResult from './SearchResult'
 import Loader from './Loader';
 import SearchBar from './SearchBar';
-
+import Error from './Error';
 
 
 class Search extends Component {
@@ -13,8 +13,11 @@ class Search extends Component {
 	}
 	
 	decider() {
-		if(this.props.isFetching && this.props.searchActive) {
+		if(this.props.isFetching && this.props.searchActive && !this.props.networkError) {
 			return (<Loader />)
+		}
+		else if(this.props.networkError) {
+			return (<Error />)
 		}
 		else if(!this.props.isFetching && this.props.searchActive ) {
 			return (
@@ -31,6 +34,7 @@ class Search extends Component {
 		return (
 			<div>
 				<SearchBar />
+				<hr />
 				{this.decider()}
 			</div>
 		)
@@ -43,6 +47,7 @@ const mapStateToProps = (state) => {
 		searchActive: uiState.searchActive,
 		isFetching: uiState.isFetching,
 		searchTerm: uiState.searchTerm,
+		networkError: uiState.networkError,
 		items: repoResultState.items,
 		total_count: repoResultState.total_count
 	}
