@@ -12,11 +12,13 @@ export default class RepoDetails extends Component {
 		return (
 			<div className="row">	
 				<div className="row">
-					<div className="col-md-4 col-sm-4 col-xs-4">
-						<h3><Link to="/"><span className="glyphicon glyphicon-chevron-left"></span>&nbsp;Back</Link></h3>
+					<div className="col-md-4 col-sm-4 col-xs-3">
+						<h3 className="hidden-xs"><Link to="/"><span className="glyphicon glyphicon-chevron-left"></span>&nbsp;Back</Link></h3>
+						<h5 className="visible-xs"><Link to="/"><span className="glyphicon glyphicon-chevron-left"></span>&nbsp;Back</Link></h5>
 					</div>
-					<div className="col-md-8 col-sm-8 col-xs-8 text-right">
-						<h3 className="text-success">{this.props.item.full_name}</h3>
+					<div className="col-md-8 col-sm-8 col-xs-9 text-right">
+						<h3 className="text-success hidden-xs">{this.props.item.full_name}</h3>
+						<h5 className="text-success visible-xs">{this.props.item.full_name}</h5>
 					</div>
 				</div>
 				<div className="row text-right">	
