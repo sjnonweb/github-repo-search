@@ -11,7 +11,11 @@ export default class SearchList extends Component {
 		const inSec = inMil / 1000;
 		const inMin = inSec / 60;
 		const inHour = inMin / 60;
-		if (inHour >= 0.5)
+		if(inHour >= 24) {
+			let days = inHour/24;
+			return Math.round(days) + " days ago"
+		}
+		else if (inHour >= 0.5)
 			return Math.round(inHour) + " hours ago"
 		else
 			return Math.round(inMin) + " minutes ago"
