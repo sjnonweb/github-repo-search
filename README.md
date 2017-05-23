@@ -1,3 +1,5 @@
+The App is live at [http://github-repo-search.surge.sh](http://github-repo-search.surge.sh)
+
 
 ## Available Scripts
 
