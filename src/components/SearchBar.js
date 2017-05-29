@@ -6,17 +6,25 @@ class SearchBar extends Component {
 	
 	constructor(props) {
 		super(props);
+		this.state = {
+			searchTerm: ''
+		}
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.searchTerm = '';
+		this.handleChange = this.handleChange.bind(this);
 	}
 
+	handleChange(event) {
+		this.setState({
+			searchTerm: event.target.value
+		});
+	}
 
 	handleSubmit(e) {
 		e.preventDefault();
-		if (!this.searchTerm.value.trim()) {
+		if (!this.state.searchTerm.trim()) {
 			return
 		}
-		this.props.dispatch(fetchSearchResult(this.searchTerm.value));
+		this.props.dispatch(fetchSearchResult(this.state.searchTerm));
 	}
 
 	render() {
@@ -26,7 +34,7 @@ class SearchBar extends Component {
 					<form onSubmit={this.handleSubmit}>
 						<div className="col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 col-xs-8">
 							<div className="form-group">
-								<input ref={node => {this.searchTerm = node}} type="text" pattern="[a-zA-Z0-9\-_]*" title="Only single or connected terms allowed. Used hyphen or underscore to connect terms" required className="form-control" id="term" />
+								<input value={this.state.searchTerm} onChange={this.handleChange} type="text" pattern="[a-zA-Z0-9\-_]*" title="Only single or connected terms allowed. Used hyphen or underscore to connect terms" required className="form-control" id="term" />
 							</div>
 						</div>
 						<div className="col-md-2 col-sm-2 col-xs-4">
